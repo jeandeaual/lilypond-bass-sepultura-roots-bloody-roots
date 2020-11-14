@@ -25,7 +25,7 @@ jobs:
       - name: Build SVG
         uses: docker://jeandeaual/lilypond:2.20.0
         with:
-          args: lilypond --svg -dno-point-and-click -dmidi-extension="midi" -dpaper-size=\"a4\" -o build/svg sepultura-roots-bloody-roots.ly
+          args: lilypond -dbackend=svg -dno-point-and-click -dmidi-extension="midi" -dpaper-size=\"a4\" -o build/svg sepultura-roots-bloody-roots.ly
       - name: Remove extra MIDI files
         run: |
           cp build/a4/*.midi build/midi/
