@@ -1,18 +1,16 @@
 \version "2.20.0"
 
 \include "articulate.ly"
-\include "snippets/ly/tablature/bending.ily"
+\include "./lilypond-bend-spanner/bend-helpers.ly"
+\include "./lilypond-bend-spanner/bend-stencils.ly"
+\include "./lilypond-bend-spanner/bend-grob-defs.ly"
+\include "./lilypond-bend-spanner/bend-music-functions.ly"
 
 \header {
   title = "Roots Bloody Roots"
   composer = "Sepultura"
   source = "https://www.songsterr.com/a/wsa/jbo-roots-bloody-roots-pabbarottifriends-bass-tab-s439446t2"
   tagline = ##f
-}
-
-\paper {
-  markup-system-spacing.padding = #3
-  system-system-spacing.padding = #5
 }
 
 intro = {
@@ -32,7 +30,7 @@ verse = {
 }
 
 solo = {
-  c8\5 b, b c'\5 c\5 c\5 \bendOn e,8\5( eis) \bendOff
+  c8\5 b, b c'\5 c\5 c\5 e,8\5 \startBend eis \stopBend
 }
 
 song = \relative c {
@@ -40,7 +38,7 @@ song = \relative c {
   \time 4/4
   % Don't put the initial silence in the MIDI
   \tag #'score {
-    \compressMMRests { R1*8 }
+    \compressMMRests R1*8
   }
   \override Score.RehearsalMark.self-alignment-X = #LEFT
   \mark "Intro"
@@ -88,9 +86,9 @@ song = \relative c {
     c4\5 r2.
   }
   \repeat unfold 7 {
-    \repeat unfold 5 c8\5 b\5 r4
+    \repeat unfold 5 { c8\5 } b\5 r4
   }
-  \repeat unfold 5 c8\5 r8 r4
+  \repeat unfold 5 { c8\5 } r8 r4
 }
 
 staff = \new StaffGroup \with {
@@ -112,13 +110,6 @@ staff = \new StaffGroup \with {
 
 \score {
   \keepWithTag #'score \staff
-  \layout {
-    \context {
-      % See https://github.com/openlilylib/snippets/tree/master/notation-snippets/guitar-string-bending#limitations
-      \StaffGroup
-      \override StaffGrouper.staff-staff-spacing.padding = #5
-    }
-  }
 }
 
 \score {
