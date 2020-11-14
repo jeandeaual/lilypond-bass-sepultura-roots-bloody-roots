@@ -20,6 +20,10 @@
   tagline = ##f
 }
 
+\paper {
+  indent = 0\mm
+}
+
 intro = {
   b,,16( c8.) c8[ b16( c8.)] c8 b16([ c8.)]
 }
