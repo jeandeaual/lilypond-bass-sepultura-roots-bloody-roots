@@ -110,6 +110,7 @@ staff = \new StaffGroup \with {
   \new TabStaff \with { stringTunings = #bass-five-string-tuning } {
     \clef moderntab
     \once \override Score.RehearsalMark.direction = #DOWN
+    \once \override Score.RehearsalMark.self-alignment-X = #LEFT
     \mark \markup { \small "BEADG Tuning" }
     \song
   }
