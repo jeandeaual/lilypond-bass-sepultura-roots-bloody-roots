@@ -39,15 +39,15 @@ chorus = {
 }
 
 verse = {
-  \repeat unfold 4 f16\5
-  \repeat unfold 4 e\5
+  \repeat unfold 4 f16
+  \repeat unfold 4 e
   \repeat unfold 3 d
   \repeat unfold 3 cis
   \repeat unfold 2 d
 }
 
 solo = {
-  c8\5 b, b c'\5 c\5 c\5 e,8\5 \startBend eis \stopBend
+  c8\4 b, b c'\4 c\4 c\4 e,8\5 \startBend eis \stopBend
 }
 
 song = \relative c {
@@ -83,7 +83,7 @@ song = \relative c {
   \partial 2
   b16 b b r16 r4
   \time 4/4
-  r2. c'4\5 \glissando
+  r2. c'4\4 \glissando
   \section "Verse 3"
   \repeat unfold 8 \relative c \intro
   \break
@@ -91,21 +91,21 @@ song = \relative c {
   \section "Guitar solo"
   \repeat unfold 8 \solo
   \section "Ending"
-  \repeat unfold 8 { c'8\5 }
+  \repeat unfold 8 { c'8 }
   \repeat unfold 3 {
-    c,\5 b\5 r cis\5[ c\5] r c\5 b\5
-    r cis\5 c\5 r c\5 r c\5 r
+    c, b r cis[ c] r c b
+    r cis c r c r c r
   }
-  c\5 b\5 r cis\5 c\5 r c\5 b\5
-  r cis\5 c\5 r c\5 r8 r4
+  c b r cis c r c b
+  r cis c r c r8 r4
   \tempo 4 = 115
   \repeat unfold 3 {
-    c4\5 r2.
+    c4 r2.
   }
   \repeat unfold 7 {
-    \repeat unfold 5 { c8\5 } b\5 r4
+    \repeat unfold 5 { c8 } b r4
   }
-  \repeat unfold 5 { c8\5 } r8 r4
+  \repeat unfold 5 { c8 } r8 r4
 }
 
 staff = \new StaffGroup \with {
