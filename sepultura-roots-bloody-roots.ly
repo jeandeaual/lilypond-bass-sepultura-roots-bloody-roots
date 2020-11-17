@@ -113,12 +113,27 @@ staff = \new StaffGroup \with {
   }
   \new TabStaff \with { stringTunings = #bass-five-string-tuning } {
     \clef moderntab
-    \once \override Score.RehearsalMark.direction = #DOWN
-    \once \override Score.RehearsalMark.self-alignment-X = #LEFT
-    \mark \markup { \small "BEADG Tuning" }
     \song
   }
 >>
+
+\markup {
+  \center-column {
+    \line{Standard 5-string tuning}
+    \concat{
+       \left-column{
+        \line{\circle 1 = G}
+        \line{\circle 2 = D}
+        \line{\circle 3 = A}
+      }
+      \hspace #3
+      \right-column{
+        \line{\circle 4 = E}
+        \line{\circle 5 = B}
+      }
+    }
+  }
+}
 
 \score {
   \keepWithTag #'score \staff
