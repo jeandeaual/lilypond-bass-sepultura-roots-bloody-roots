@@ -24,6 +24,12 @@
   indent = 0\mm
 }
 
+section = #(define-music-function (text) (string?) #{
+  \once \override Score.RehearsalMark.self-alignment-X = #LEFT
+  \once \override Score.RehearsalMark.padding = #2
+  \mark \markup \override #'(thickness . 2) \rounded-box \bold #text
+#})
+
 intro = {
   b,,16( c8.) c8[ b16( c8.)] c8 b16([ c8.)]
 }
@@ -52,24 +58,24 @@ song = \relative c {
     \compressMMRests R1*8
   }
   \override Score.RehearsalMark.self-alignment-X = #LEFT
-  \mark "Intro"
+  \section "Intro"
   \repeat unfold 8 \intro
-  \mark "Chorus 1"
+  \section "Chorus 1"
   \repeat unfold 8 \chorus
   \break
-  \mark "Verse 1"
+  \section "Verse 1"
   \repeat unfold 8 \relative c \intro
   \break
   \repeat unfold 3 \verse
   \repeat unfold 4 \relative c \intro
   \break
-  \mark "Chorus 2"
+  \section "Chorus 2"
   \repeat unfold 8 \chorus
   \break
-  \mark "Verse 2"
+  \section "Verse 2"
   \repeat unfold 4 \relative c \intro
   \break
-  \mark "Bridge"
+  \section "Bridge"
   \repeat unfold 4 {
     b8 b r2.
   }
@@ -78,13 +84,13 @@ song = \relative c {
   b16 b b r16 r4
   \time 4/4
   r2. c'4\5 \glissando
-  \mark "Verse 3"
+  \section "Verse 3"
   \repeat unfold 8 \relative c \intro
   \break
   \repeat unfold 3 \relative c,, \verse
-  \mark "Guitar solo"
+  \section "Guitar solo"
   \repeat unfold 8 \solo
-  \mark "Ending"
+  \section "Ending"
   \repeat unfold 8 { c'8\5 }
   \repeat unfold 3 {
     c,\5 b\5 r cis\5[ c\5] r c\5 b\5
