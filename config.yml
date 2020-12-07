@@ -15,3 +15,6 @@
 - command: update
   path: repository
   value: jeandeaual/lilypond-bass-sepultura-roots-bloody-roots
+- command: update
+  path: copyright
+  value: true
