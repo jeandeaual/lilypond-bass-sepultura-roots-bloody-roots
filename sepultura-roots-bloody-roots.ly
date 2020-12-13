@@ -1,10 +1,11 @@
 \version "2.20.0"
 
 \include "articulate.ly"
-\include "./lilypond-bend-spanner/bend-helpers.ly"
-\include "./lilypond-bend-spanner/bend-stencils.ly"
-\include "./lilypond-bend-spanner/bend-grob-defs.ly"
-\include "./lilypond-bend-spanner/bend-music-functions.ly"
+
+\include "bend-helpers.ly"
+\include "bend-stencils.ly"
+\include "bend-grob-defs.ly"
+\include "bend-music-functions.ly"
 
 \header {
   title = "Roots Bloody Roots"
