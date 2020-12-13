@@ -27,6 +27,7 @@
 
 \paper {
   indent = 0\mm
+  markup-system-spacing.padding = 3
 }
 
 section = #(define-music-function (text) (string?) #{
