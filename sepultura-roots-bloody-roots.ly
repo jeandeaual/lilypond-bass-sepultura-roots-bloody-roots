@@ -10,7 +10,12 @@
   title = "Roots Bloody Roots"
   composer = "Sepultura"
   author = \markup \fromproperty #'header:composer
-  subject = \markup \concat { \fromproperty #'header:title " Bass Partition" }
+  subject = \markup \concat {
+    "Bass partition for “"
+    \fromproperty #'header:title
+    "” by "
+    \fromproperty #'header:composer
+  }
   source = "https://www.songsterr.com/a/wsa/jbo-roots-bloody-roots-pabbarottifriends-bass-tab-s439446t2"
   keywords = #(string-join '(
     "music"
