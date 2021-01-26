@@ -107,7 +107,7 @@ song = \relative c {
   \repeat unfold 7 {
     \repeat unfold 5 { c8 } b r4
   }
-  \repeat unfold 5 { c8 } r8 r4
+  \repeat unfold 5 { c8 } r8 r4 \bar "|."
 }
 
 staff = \new StaffGroup \with {
