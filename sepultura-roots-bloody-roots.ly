@@ -1,10 +1,6 @@
-\version "2.20.0"
+\version "2.23.0"
 
 \include "articulate.ly"
-\include "./lilypond-bend-spanner/bend-helpers.ly"
-\include "./lilypond-bend-spanner/bend-stencils.ly"
-\include "./lilypond-bend-spanner/bend-grob-defs.ly"
-\include "./lilypond-bend-spanner/bend-music-functions.ly"
 
 \header {
   title = "Roots Bloody Roots"
@@ -53,7 +49,7 @@ verse = {
 }
 
 solo = {
-  c8\4 b, b c'\4 c\4 c\4 e,8\5 \startBend eis \stopBend
+  c8\4 b, b c'\4 c\4 c\4 e,8\5\^ eis
 }
 
 song = \relative c {
@@ -117,7 +113,7 @@ song = \relative c {
 staff = \new StaffGroup \with {
   midiInstrument = #"electric bass (finger)"
 } <<
-  \new Staff \with { \omit StringNumber } {
+  \new Staff {
     \clef "bass_15"
     \once \override Score.MetronomeMark.extra-offset = #'(-3 . 0)
     \tempo 4 = 120
@@ -149,6 +145,16 @@ staff = \new StaffGroup \with {
 
 \score {
   \keepWithTag #'score \staff
+  \layout {
+    \context {
+      \Voice
+      \omit StringNumber
+    }
+    \context {
+      \TabVoice
+      \consists "Bend_spanner_engraver"
+    }
+  }
 }
 
 \score {
