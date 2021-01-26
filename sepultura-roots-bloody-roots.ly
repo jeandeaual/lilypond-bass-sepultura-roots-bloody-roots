@@ -11,6 +11,7 @@
     \fromproperty #'header:title
     "” by "
     \fromproperty #'header:composer
+    "."
   }
   source = "https://www.songsterr.com/a/wsa/jbo-roots-bloody-roots-pabbarottifriends-bass-tab-s439446t2"
   keywords = #(string-join '(
