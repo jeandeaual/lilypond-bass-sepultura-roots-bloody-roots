@@ -3,9 +3,17 @@ on:
   pull_request:
     branches:
       - master
+    paths-ignore:
+      - 'LICENSE'
+      - '**.md'
+      - '.vscode/*'
   push:
     branches:
       - master
+    paths-ignore:
+      - 'LICENSE'
+      - '**.md'
+      - '.vscode/*'
   workflow_dispatch:
     inputs: {}
 jobs:
