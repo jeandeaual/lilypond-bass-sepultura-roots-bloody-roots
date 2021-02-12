@@ -10,9 +10,6 @@
   path: baseurl
   value: /lilypond-bass-sepultura-roots-bloody-roots
 - command: update
-  path: url
-  value: https://jeandeaual.github.io
-- command: update
   path: repository
   value: jeandeaual/lilypond-bass-sepultura-roots-bloody-roots
 - command: update
