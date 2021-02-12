@@ -5,6 +5,7 @@
 *.midi
 *.mid
 *.log
+-*.tmp*
 
 
 ### Vim ###
