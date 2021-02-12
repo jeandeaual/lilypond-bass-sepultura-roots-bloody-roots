@@ -50,17 +50,28 @@ verse = {
 }
 
 solo = {
-  c8\4 b, b c'\4 c\4 c\4 e,8\5\^ eis
+  \tag #'score {
+    c8\4 b, b c'\4 c\4 c\4 e,8\5\^ eis
+  }
+  \tag #'midi {
+    % Put a slur in the MIDI so that the bend doesn't sound like two different notes
+    c'8\4 b, b c'\4 c\4 c\4 e,8\5\^( eis)
+  }
+  \tag #'fullTab {
+    \stemDown
+    % Don't show a beam on the bend when only displaying the tab
+    c'8\4[ b, b c'\4] c\4[ c\4 e,8\5\^] eis
+    \stemNeutral
+  }
 }
 
 song = \relative c {
   \numericTimeSignature
   \time 4/4
-  % Don't put the initial silence in the MIDI
-  \tag #'score {
-    \compressMMRests R1*8
-  }
-  \override Score.RehearsalMark.self-alignment-X = #LEFT
+
+  \override MultiMeasureRest.expand-limit = 7
+  \tag #'(score fullTab) \compressMMRests R1*8
+
   \section "Intro"
   \repeat unfold 8 \intro
   \section "Chorus 1"
@@ -108,11 +119,12 @@ song = \relative c {
   \repeat unfold 7 {
     \repeat unfold 5 { c8 } b r4
   }
-  \repeat unfold 5 { c8 } r8 r4 \bar "|."
+  \repeat unfold 5 { c8 } r8 r4
+  \bar "|."
 }
 
-staff = \new StaffGroup \with {
-  midiInstrument = #"electric bass (finger)"
+staves = \new StaffGroup \with {
+  midiInstrument = "electric bass (finger)"
 } <<
   \new Staff {
     \clef "bass_15"
@@ -126,7 +138,7 @@ staff = \new StaffGroup \with {
   }
 >>
 
-\markup {
+tuningMarkup = \markup {
   \center-column {
     \line{Standard 5-string tuning}
     \concat{
@@ -144,21 +156,51 @@ staff = \new StaffGroup \with {
   }
 }
 
-\score {
-  \keepWithTag #'score \staff
-  \layout {
-    \context {
-      \Voice
-      \omit StringNumber
-    }
-    \context {
-      \TabVoice
-      \consists "Bend_spanner_engraver"
-    }
+scoreLayout = \layout {
+  \context {
+    \Voice
+    \omit StringNumber
+  }
+  \context {
+    \TabVoice
+    \consists "Bend_spanner_engraver"
   }
 }
 
-\score {
-  \unfoldRepeats \articulate \keepWithTag #'midi \staff
-  \midi {}
+\book {
+  \tuningMarkup
+
+  \score {
+    \keepWithTag #'score \staves
+
+    \scoreLayout
+  }
+
+  \score {
+    \removeWithTag #'score \unfoldRepeats \articulate \staves
+    \midi {}
+  }
+}
+
+\book {
+  \bookOutputSuffix "tab"
+
+  \header {
+    pdftitle = \markup \concat { \fromproperty #'header:title " (Tablature)"}
+  }
+
+  \tuningMarkup
+
+  \score {
+    \new TabStaff \with {
+      stringTunings = #bass-five-string-tuning
+      midiInstrument = "electric bass (finger)"
+    } {
+      \tabFullNotation
+      \clef moderntab
+      \keepWithTag #'fullTab \song
+    }
+
+    \scoreLayout
+  }
 }
